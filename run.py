@@ -68,7 +68,7 @@ def main(MR):
             optimizer = torch.optim.Adam(
                             itertools.chain(NBIMVC.parameters()),
                             lr=config['training']['lr'],
-                            weight_decay=0.01,
+                            weight_decay=0.02,
                         )  # weight_decay=0.01
 
             # Pre-training

@@ -21,7 +21,7 @@ def load_data(config):
     Y_list = []
     print("shuffle")
     if data_name in ['MNIST-USPS']:
-        mat = sio.loadmat('/home/yanwenbiao/CODE/IncompleteMVC/data/MNIST-USPS.mat')
+        mat = sio.loadmat('data/MNIST-USPS.mat')
         X1 = mat['X1'].astype('float32').reshape((5000, 784))  # (5000,784)
         X2 = mat['X2'].astype('float32').reshape((5000, 784))  # (5000,784)
         Y = np.squeeze(mat['Y'])
@@ -30,60 +30,6 @@ def load_data(config):
         Y_list.append(Y)
 
         print(Y_list[0])
-    elif data_name in ['Caltech101-20']:
-        mat = sio.loadmat(os.path.join(main_dir, 'data', data_name + '.mat'))
-        X = mat['X'][0]
-        # for view in [3, 4]:
-        #     x = X[view]                                     # (2386,1984)
-        #     X_list.append(x)                                # (2386,512)
-        # y = np.squeeze(mat['Y']).astype('int')
-        # Y_list.append(y)
-        print(np.squeeze(mat['Y']).astype('int'))
-
-        x1 = X[3]
-        x2 = X[4]
-        xx1 = np.copy(x1)
-        xx2 = np.copy(x2)
-        Y = np.copy(mat['Y'])
-        index = [i for i in range(2386)]
-        np.random.seed(2386)
-        np.random.shuffle(index)
-        for i in range(2386):
-            xx1[i] = x1[index[i]]
-            xx2[i] = x2[index[i]]
-            Y[i] = mat['Y'][index[i]]
-
-        X_list.append(xx1)
-        X_list.append(xx2)
-        y = np.squeeze(Y).astype('int')
-        Y_list.append(y)
-        print(y)
-    elif data_name in ['RGB-D']:
-        mat = sio.loadmat(os.path.join(main_dir, 'data', 'RGB-D.mat'))
-        x2 = np.copy(mat['X2'])
-        x1 = np.copy(mat['X1'])
-        y = np.copy(mat['Y'].T)
-        print(np.squeeze(y))
-        np.random.seed(1449)
-        index = [i for i in range(1449)]
-        np.random.shuffle(index)
-        for i in range(1449):
-            x2[i] = mat['X2'][index[i]]
-            x1[i] = mat['X1'][index[i]]
-            y[i] = mat['Y'].T[index[i]]
-
-        from sklearn.preprocessing import normalize
-        x1 = normalize(x1, axis=1, norm='max')
-        x2 = normalize(x2, axis=1, norm='max')
-        from sklearn import preprocessing
-        min_max_scaler = preprocessing.MinMaxScaler()
-        # x1 = min_max_scaler.fit_transform(x1)
-        # x2 = min_max_scaler.fit_transform(x2)
-
-        X_list.append(x2.astype('float32'))                 # (1449,2048)
-        X_list.append(x1.astype('float32'))                 # (1449,300)
-        Y_list.append(np.squeeze(y))
-        print(np.squeeze(y))
     elif data_name in ['BDGP']:
         mat = sio.loadmat('data/BDGP.mat')
         x2 = np.copy(mat['X2'])
@@ -173,7 +119,7 @@ def load_data(config):
         Y_list.append(y)
         print(y)
     elif data_name in ['HandWritten']:
-        mat = sio.loadmat('/home/yanwenbiao/CODE/CPSPAN/data5/HandWritten.mat')
+        mat = sio.loadmat('data/HandWritten.mat')
         X = mat['X'][0]
         Y = np.copy(mat['Y'])
 
@@ -196,7 +142,7 @@ def load_data(config):
 
 
     elif data_name in ['Caltech101-7']:
-        mat = sio.loadmat('/home/yanwenbiao/CODE/CPSPAN/data5/Caltech101-7.mat')
+        mat = sio.loadmat('data/Caltech101-7.mat')
         X = mat['X']
         Y = np.copy(mat['Y'])
 

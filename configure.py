@@ -59,9 +59,9 @@ def get_default_config(data_name):
                 batchnorm=True,
             ),
             training=dict(
-                pre_epochs = 0,
+                pre_epochs = 50,
                 con_epochs = 100,
-                temperature=1,
+                temperature=0.5,
                 view = 2,
                 missing_rate=0.3,
                 seed=19,
@@ -70,7 +70,7 @@ def get_default_config(data_name):
                 lr=1.0e-4,
                 lambda1=0.01,
                 lambda2=0.1,
-                lambda3=0.1,
+                lambda3=0.01,
                 n_class=15,
             ),
             Prediction=dict(
